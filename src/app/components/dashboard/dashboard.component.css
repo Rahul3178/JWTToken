@@ -1,0 +1,17 @@
+.dashboard_container{
+    margin-top: 40px;
+}
+
+.card_outer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+.card_style{
+    width: 200px;
+    text-wrap: wrap;
+    text-overflow: clip;
+}

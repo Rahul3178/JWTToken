@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
@@ -15,6 +16,11 @@ export class LoginComponent {
     "EmailId":"",
     "Password":""
   }
+
+  loginOn:FormGroup| undefined;
+
+  emailFormControl= new FormControl('',[Validators.required,Validators.email]);
+  passwordFormControl= new FormControl('',[Validators.required,Validators.min(6)]);
 
   constructor(private userService:UserService,private router:Router){}
 

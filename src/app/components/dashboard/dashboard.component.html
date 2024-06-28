@@ -1,6 +1,14 @@
-<div>
-    <h2>List of all Users</h2>
-    <ul>
-        <li *ngFor="let item of userList">{{item | json}}</li>
-    </ul>
+<div class="dashboard_container">
+    <h2 style="text-align: center;">List of all Users</h2>
+    <!-- Todo  implement pagination and need to improve styling -->
+   <div class="card_outer">
+       <mat-card *ngFor="let item of userList" class="card_style">
+           <mat-card-content style="text-wrap: wrap;">
+               {{item.firstName}} <br>
+               {{item.emailId}} <br>
+               {{item.lastName}}
+           </mat-card-content>
+       </mat-card>
+
+   </div>
 </div>

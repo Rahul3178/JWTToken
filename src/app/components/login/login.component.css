@@ -1,0 +1,10 @@
+.form_location{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.outer_form{
+    border: 2px solid black;
+    padding:30px;
+}
