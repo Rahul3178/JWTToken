@@ -11,23 +11,32 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginComponent {
 
 
-  loginObj:any={
+  
 
-    "EmailId":"",
-    "Password":""
+  loginForm= new FormGroup({
+    
+    emailFormControl: new FormControl('',[Validators.required,Validators.email]),
+    passwordFormControl:new FormControl('',[Validators.required,Validators.min(6)])
   }
 
-  loginOn:FormGroup| undefined;
+  )
 
-  emailFormControl= new FormControl('',[Validators.required,Validators.email]);
-  passwordFormControl= new FormControl('',[Validators.required,Validators.min(6)]);
+  // loginObj:any={
+  //     "EmailId":this.loginForm.value.emailFormControl,
+  //     "Password":this.loginForm.value.passwordFormControl
+  // }
 
   constructor(private userService:UserService,private router:Router){}
 
   onLoginWith(){
 
    debugger;
-    this.userService.onLogin(this.loginObj).subscribe((res:any)=>{
+    this.userService.onLogin(
+      {
+        "EmailId":this.loginForm.controls.emailFormControl.value,
+        "Password":this.loginForm.controls.passwordFormControl.value
+    }
+    ).subscribe((res:any)=>{
       debugger;
           if(res.result)
             {

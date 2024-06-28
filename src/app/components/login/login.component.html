@@ -1,54 +1,39 @@
-<div>
-  <div>
-    <label for="email">Email</label>
-    <input
-      type="email"
-      id="email"
-      name="EmailId"
-      [(ngModel)]="loginObj.EmailId"
-    />
-  </div>
-  <div>
-    <label for="password">Password</label>
-    <input id="password" name="Password" [(ngModel)]="loginObj.Password" />
-  </div>
-  <div>
-    <button type="button" (click)="onLoginWith()">Login</button>
-  </div>
-</div>
 <div class="form_location">
     <div class="outer_form">
 
-  <form >
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginWith()" >
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input
+        id="emailFormControl"
         type="text"
         matInput
-        [formControl]="emailFormControl"
+        formControlName="emailFormControl"
         placeholder="Enter your Email"
       />
-      <mat-error *ngIf="emailFormControl.hasError('required')"
+      <!-- <mat-error *ngIf="emailFormControl.hasError('required')"
         >Email is required</mat-error
-      >
-      <mat-error
+      > -->
+      <!-- <mat-error
         *ngIf="
           emailFormControl.hasError('email') &&
           !emailFormControl.hasError('required')
         "
         >Please enter a valid email address</mat-error
-      >
+      > -->
     </mat-form-field>
     <br />
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input type="password" matInput [formControl]="passwordFormControl" />
-      <mat-error *ngIf="passwordFormControl.hasError('required')"
+      <input
+        id="passwordFormControl"
+      type="password" matInput formControlName="passwordFormControl" />
+      <!-- <mat-error *ngIf="passwordFormControl.hasError('required')"
         >Please enter password</mat-error
-      >
+      > -->
     </mat-form-field>
     <div style="align-items: center;">
-        <button type="button" mat-raised-button color="accent">Login</button>
+        <button type="submit" mat-raised-button color="accent">Login</button>
     </div>
   </form>
   
