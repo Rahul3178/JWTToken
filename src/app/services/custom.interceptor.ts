@@ -3,14 +3,16 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable()
 export class CustomInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private userService:UserService) {}
 
   
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -24,6 +26,18 @@ export class CustomInterceptor implements HttpInterceptor {
           Authorization:`Bearer ${loggedUserData.token}`
         }
       })
-    return next.handle(cloneRequest);
+    return next.handle(cloneRequest).pipe(
+      catchError((error:HttpErrorResponse)=>{
+        // if token get expired we will got 401  unauthorized error here we have to handle that
+        if(error.status==401)
+          {
+              const isRefreshed= confirm("Your session is expired. Do you want to continue?")
+              if(isRefreshed){
+                  this.userService.$refreshedToken.next(true);
+              }
+          }
+        return throwError(error)
+      })
+    );
   }
 }

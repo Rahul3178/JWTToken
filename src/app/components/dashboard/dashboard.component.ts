@@ -12,7 +12,9 @@ export class DashboardComponent implements OnInit {
 
   constructor(private userService: UserService) {
       console.log("dashboard component ");
-      
+      this.userService.$refreshTokenReceived.subscribe((res:any)=>{
+        this.ngOnInit();
+      })
    }
 
   ngOnInit(): void {

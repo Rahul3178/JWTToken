@@ -32,6 +32,10 @@ export class LoginComponent {
           if(res.result)
             {
                 localStorage.setItem('user',JSON.stringify(res.data));
+                localStorage.setItem('userEmail',JSON.stringify(res.data.emailId));
+                localStorage.setItem('userRefresh',JSON.stringify(res.data.refreshToken));
+                localStorage.setItem('userToken',JSON.stringify(res.data.token));
+                localStorage.setItem('userUserId',JSON.stringify(res.data.userId));
                 this.router.navigateByUrl('/dashboard');
             }else{
               console.log(res.message)
