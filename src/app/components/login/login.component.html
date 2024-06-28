@@ -1,0 +1,13 @@
+<div>
+    <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="EmailId" [(ngModel)]="loginObj.EmailId">
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input id="password" name="Password"  [(ngModel)]="loginObj.Password">
+    </div>
+    <div>
+        <button type="button" (click)="onLoginWith()">Login</button>
+    </div>
+</div>
